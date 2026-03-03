@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WhiteCrow — Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="icon" type="image/x-icon" href="logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div id="cursor"></div>
+
+  <!-- ── NAV ── -->
+  <nav id="navbar">
+    <div class="nav-logo">WC</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#languages">Stack</a></li>
+      <li><a href="#works">Works</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-menu-btn" id="menuBtn">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- ── MOBILE DRAWER ── -->
+  <div class="nav-drawer" id="navDrawer">
+    <a href="#about"     class="drawer-link">About</a>
+    <a href="#languages" class="drawer-link">Stack</a>
+    <a href="#works"     class="drawer-link">Works</a>
+    <a href="#contact"   class="drawer-link">Contact</a>
+  </div>
+
+  <!-- ── HERO ── -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <p class="hero-tag">Frontend Developer &amp; Programmer</p>
+        <h1 class="hero-name">White<span>Crow</span></h1>
+        <p class="hero-desc">
+          I write code. It works.
+        </p>
+        <div class="hero-cta">
+          <a href="#works" class="btn primary">View My Work</a>
+          <a href="https://github.com/whitecrow-0" target="_blank" class="btn">GitHub ↗</a>
+        </div>
+      </div>
+      <div class="hero-scroll">
+        <div class="scroll-line"></div>
+        Scroll
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ABOUT ── -->
+  <section id="about">
+    <div class="container">
+      <div class="section-label reveal">About</div>
+      <div class="about-grid">
+        <div class="reveal">
+          <h2 class="section-title">Who I am.</h2>
+          <div class="about-text">
+            <p>I build things. Some of them are good.</p>
+            <p>That's about all you need to know.</p>
+          </div>
+        </div>
+        <div class="about-stats reveal">
+          <div class="stat">
+            <div class="stat-num">5</div>
+            <div class="stat-label">Languages</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">∞</div>
+            <div class="stat-label">Curiosity</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">FS</div>
+            <div class="stat-label">Full Stack</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">OSS</div>
+            <div class="stat-label">Open Source</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── LANGUAGES ── -->
+  <section id="languages">
+    <div class="container">
+      <div class="section-label reveal">Stack</div>
+      <h2 class="section-title reveal">Tools of the trade.</h2>
+      <div class="lang-grid reveal">
+        <div class="lang-card">
+          <span class="lang-icon">⚡</span>
+          <div class="lang-name">JavaScript</div>
+        </div>
+        <div class="lang-card">
+          <span class="lang-icon">🐍</span>
+          <div class="lang-name">Python</div>
+        </div>
+        <div class="lang-card">
+          <span class="lang-icon">☕</span>
+          <div class="lang-name">Java</div>
+        </div>
+        <div class="lang-card">
+          <span class="lang-icon">🔩</span>
+          <div class="lang-name">C++</div>
+        </div>
+        <div class="lang-card">
+          <span class="lang-icon">🎨</span>
+          <div class="lang-name">HTML / CSS</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WORKS ── -->
+  <section id="works">
+    <div class="container">
+      <div class="section-label reveal">Works</div>
+      <h2 class="section-title reveal">Things I made.</h2>
+      <div class="repos-grid reveal" id="repos-container">
+        <div class="repos-loading">
+          <span class="loading-dots">Fetching from GitHub</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-label reveal">Contact</div>
+      <div class="contact-inner">
+        <div class="reveal">
+          <h2 class="section-title">Let's connect.</h2>
+          <p style="color:var(--muted); max-width:380px; line-height:1.8;">
+            Or don't. Up to you.
+          </p>
+        </div>
+        <div class="contact-links reveal">
+          <a href="https://github.com/whitecrow-0" target="_blank" class="contact-link">
+            <span>GitHub</span>
+            <span class="contact-link-arrow">→</span>
+          </a>
+          <a href="mailto:whitecrow@example.com" class="contact-link">
+            <span>Email</span>
+            <span class="contact-link-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <div class="container">
+    <footer>
+      <span>© 2026 WhiteCrow</span>
+      <span>— WC</span>
+    </footer>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
