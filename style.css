@@ -445,6 +445,19 @@ footer {
   background: var(--border);
 }
 
+.modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:500; display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity 0.25s ease; backdrop-filter:blur(6px); }
+.modal-overlay.open { opacity:1; pointer-events:all; }
+.modal { background:var(--card); border:1px solid var(--border); padding:40px; width:100%; max-width:400px; position:relative; transform:translateY(16px); transition:transform 0.25s ease; }
+.modal-overlay.open .modal { transform:translateY(0); }
+.modal-close { position:absolute; top:16px; right:16px; background:none; border:none; color:var(--muted); font-size:16px; cursor:none; transition:color 0.2s; }
+.modal-close:hover { color:var(--fg); }
+.modal-title { font-family:var(--sans); font-size:22px; font-weight:700; letter-spacing:-0.5px; margin-bottom:28px; color:var(--fg); }
+.modal-actions { display:flex; flex-direction:column; gap:10px; }
+.modal-btn { display:block; padding:14px 20px; border:1px solid var(--border); color:var(--fg); text-decoration:none; font-family:var(--mono); font-size:12px; letter-spacing:0.08em; text-transform:uppercase; text-align:center; transition:background 0.2s,color 0.2s,border-color 0.2s; cursor:none; }
+.modal-btn:hover { background:var(--fg); color:var(--bg); border-color:var(--fg); }
+.modal-btn.primary { background:var(--accent); color:var(--bg); border-color:var(--accent); }
+.modal-btn.primary:hover { background:#b8ef00; border-color:#b8ef00; }
+
 /* ── NAV MENU BTN (mobile only) ── */
 .nav-menu-btn { display: none; }
 

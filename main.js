@@ -5,7 +5,6 @@ const navDrawer = document.getElementById('navDrawer');
 menuBtn.addEventListener('click', () => {
   navDrawer.classList.toggle('open');
 });
-
 document.querySelectorAll('.drawer-link').forEach(link => {
   link.addEventListener('click', () => navDrawer.classList.remove('open'));
 });
@@ -19,7 +18,7 @@ document.addEventListener('mousemove', e => {
 });
 
 function attachCursorListeners() {
-  document.querySelectorAll('a, button, .lang-card, .repo-card').forEach(el => {
+  document.querySelectorAll('a, button, .lang-card, .repo-card, .modal-btn').forEach(el => {
     el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
     el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
   });
@@ -28,14 +27,12 @@ attachCursorListeners();
 
 /* ── NAV SCROLL ── */
 const navbar = document.getElementById('navbar');
-
 window.addEventListener('scroll', () => {
   navbar.classList.toggle('scrolled', window.scrollY > 40);
 });
 
 /* ── REVEAL ON SCROLL ── */
 const reveals = document.querySelectorAll('.reveal');
-
 const revealObserver = new IntersectionObserver(entries => {
   entries.forEach((entry, i) => {
     if (entry.isIntersecting) {
@@ -44,8 +41,34 @@ const revealObserver = new IntersectionObserver(entries => {
     }
   });
 }, { threshold: 0.12 });
-
 reveals.forEach(el => revealObserver.observe(el));
+
+/* ── REPO MODAL ── */
+const repoModal    = document.getElementById('repoModal');
+const modalTitle   = document.getElementById('modalTitle');
+const modalVisit   = document.getElementById('modalVisit');
+const modalCode    = document.getElementById('modalCode');
+const modalClose   = document.getElementById('modalClose');
+
+function openModal(name, homepage, repoUrl) {
+  modalTitle.textContent = name;
+  if (homepage && homepage.startsWith('http')) {
+    modalVisit.href = homepage;
+    modalVisit.style.display = 'block';
+  } else {
+    modalVisit.style.display = 'none';
+  }
+  modalCode.href = repoUrl;
+  repoModal.classList.add('open');
+}
+
+function closeModal() { repoModal.classList.remove('open'); }
+
+modalClose.addEventListener('click', closeModal);
+modalVisit.addEventListener('click', closeModal);
+modalCode.addEventListener('click', closeModal);
+repoModal.addEventListener('click', e => { if (e.target === repoModal) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
 /* ── GITHUB REPOS ── */
 const LANG_COLORS = {
@@ -64,7 +87,6 @@ const LANG_COLORS = {
 
 async function loadRepos() {
   const container = document.getElementById('repos-container');
-
   try {
     const res = await fetch(
       'https://api.github.com/users/whitecrow-0/repos?sort=updated&per_page=12&type=public'
@@ -87,24 +109,27 @@ async function loadRepos() {
         : 'No description provided.';
 
       return `
-        <a class="repo-card" href="${repo.homepage && repo.homepage.startsWith('http') ? repo.homepage : repo.html_url}" target="_blank" rel="noopener">
+        <div class="repo-card"
+          data-name="${repo.name}"
+          data-homepage="${repo.homepage || ''}"
+          data-url="${repo.html_url}">
           <div class="repo-name">${repo.name}</div>
           <div class="repo-desc">${desc}</div>
           <div class="repo-meta">
-            ${lang
-              ? `<span class="repo-lang">
-                   <span class="lang-dot" style="background:${color}"></span>
-                   ${lang}
-                 </span>`
-              : ''}
+            ${lang ? `<span class="repo-lang"><span class="lang-dot" style="background:${color}"></span>${lang}</span>` : ''}
             <span class="repo-stars">★ ${repo.stargazers_count}</span>
             ${repo.fork ? '<span style="opacity:0.5">fork</span>' : ''}
           </div>
-        </a>
+        </div>
       `;
     }).join('');
 
-    // Re-attach cursor hover listeners for dynamically added cards
+    document.querySelectorAll('.repo-card').forEach(card => {
+      card.addEventListener('click', () => {
+        openModal(card.dataset.name, card.dataset.homepage, card.dataset.url);
+      });
+    });
+
     attachCursorListeners();
 
   } catch (err) {
