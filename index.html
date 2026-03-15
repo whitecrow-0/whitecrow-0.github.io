@@ -4,9 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>WhiteCrow — Developer</title>
+
+  <!-- SEO / OG -->
+  <meta name="description" content="WhiteCrow — Frontend developer & programmer. I build things. Some of them are good." />
+  <meta property="og:title" content="WhiteCrow — Developer" />
+  <meta property="og:description" content="Frontend developer & programmer. I build things. Some of them are good." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="WhiteCrow — Developer" />
+  <meta name="twitter:description" content="Frontend developer & programmer. I build things. Some of them are good." />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="icon" type="image/x-icon" href="logo.png">
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -17,12 +29,12 @@
   <nav id="navbar">
     <div class="nav-logo">WC</div>
     <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#languages">Stack</a></li>
-      <li><a href="#works">Works</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about"     data-section="about">About</a></li>
+      <li><a href="#languages" data-section="languages">Stack</a></li>
+      <li><a href="#works"     data-section="works">Works</a></li>
+      <li><a href="#contact"   data-section="contact">Contact</a></li>
     </ul>
-    <div class="nav-menu-btn" id="menuBtn">
+    <div class="nav-menu-btn" id="menuBtn" aria-label="Open menu">
       <span></span><span></span><span></span>
     </div>
   </nav>
@@ -46,13 +58,15 @@
         </p>
         <div class="hero-cta">
           <a href="#works" class="btn primary">View My Work</a>
-          <a href="https://github.com/whitecrow-0" target="_blank" class="btn">GitHub ↗</a>
+          <a href="https://github.com/whitecrow-0" target="_blank" rel="noopener noreferrer" class="btn">
+            <i class="fa-brands fa-github"></i> GitHub
+          </a>
         </div>
       </div>
-      <div class="hero-scroll">
+      <a href="#about" class="hero-scroll" aria-label="Scroll to about">
         <div class="scroll-line"></div>
         Scroll
-      </div>
+      </a>
     </div>
   </section>
 
@@ -70,19 +84,19 @@
         </div>
         <div class="about-stats reveal">
           <div class="stat">
-            <div class="stat-num">5</div>
+            <div class="stat-num" data-count="5">0</div>
             <div class="stat-label">Languages</div>
           </div>
           <div class="stat">
-            <div class="stat-num">∞</div>
+            <div class="stat-num stat-symbol">∞</div>
             <div class="stat-label">Curiosity</div>
           </div>
           <div class="stat">
-            <div class="stat-num">FS</div>
+            <div class="stat-num stat-symbol">FS</div>
             <div class="stat-label">Full Stack</div>
           </div>
           <div class="stat">
-            <div class="stat-num">±</div>
+            <div class="stat-num stat-symbol">±</div>
             <div class="stat-label">Open Source</div>
           </div>
         </div>
@@ -97,23 +111,23 @@
       <h2 class="section-title reveal">Tools of the trade.</h2>
       <div class="lang-grid reveal">
         <div class="lang-card">
-          <span class="lang-icon">⚡</span>
+          <i class="lang-icon fa-brands fa-js"></i>
           <div class="lang-name">JavaScript</div>
         </div>
         <div class="lang-card">
-          <span class="lang-icon">🐍</span>
+          <i class="lang-icon fa-brands fa-python"></i>
           <div class="lang-name">Python</div>
         </div>
         <div class="lang-card">
-          <span class="lang-icon">☕</span>
+          <i class="lang-icon fa-brands fa-java"></i>
           <div class="lang-name">Java</div>
         </div>
         <div class="lang-card">
-          <span class="lang-icon">🔩</span>
+          <i class="lang-icon fa-solid fa-code"></i>
           <div class="lang-name">C++</div>
         </div>
         <div class="lang-card">
-          <span class="lang-icon">🎨</span>
+          <i class="lang-icon fa-brands fa-html5"></i>
           <div class="lang-name">HTML / CSS</div>
         </div>
       </div>
@@ -145,13 +159,15 @@
           </p>
         </div>
         <div class="contact-links reveal">
-          <a href="https://github.com/whitecrow-0" target="_blank" class="contact-link">
+          <a href="https://github.com/whitecrow-0" target="_blank" rel="noopener noreferrer" class="contact-link">
+            <i class="fa-brands fa-github contact-link-icon"></i>
             <span>GitHub</span>
-            <span class="contact-link-arrow">→</span>
+            <span class="contact-link-arrow"><i class="fa-solid fa-arrow-right"></i></span>
           </a>
           <a href="mailto:whitecrow@example.com" class="contact-link">
+            <i class="fa-solid fa-envelope contact-link-icon"></i>
             <span>Email</span>
-            <span class="contact-link-arrow">→</span>
+            <span class="contact-link-arrow"><i class="fa-solid fa-arrow-right"></i></span>
           </a>
         </div>
       </div>
@@ -166,13 +182,20 @@
     </footer>
   </div>
 
-  <div id="repoModal" class="modal-overlay">
+  <!-- ── REPO MODAL ── -->
+  <div id="repoModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal">
-      <button id="modalClose" class="modal-close">✕</button>
+      <button id="modalClose" class="modal-close" aria-label="Close modal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
       <div id="modalTitle" class="modal-title"></div>
       <div class="modal-actions">
-        <a id="modalVisit" class="modal-btn primary" target="_blank" rel="noopener">Visit Website ↗</a>
-        <a id="modalCode" class="modal-btn" target="_blank" rel="noopener">View Code ↗</a>
+        <a id="modalVisit" class="modal-btn primary" target="_blank" rel="noopener noreferrer">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> Visit Website
+        </a>
+        <a id="modalCode" class="modal-btn" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-github"></i> View Code
+        </a>
       </div>
     </div>
   </div>
