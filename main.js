@@ -160,7 +160,7 @@ async function loadRepos() {
     const allRepos = await res.json();
     const repos = allRepos.filter(r => 
       !r.name.toLowerCase().includes('github.io') &&
-      r.name.toLowerCase() !== 'portfolio'
+      r.name.toLowerCase() !== 'whitecrow'
     );
 
     if (!repos.length) throw new Error('No repos');
