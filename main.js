@@ -158,7 +158,10 @@ async function loadRepos() {
     if (!res.ok) throw new Error('GitHub API error: ' + res.status);
 
     const allRepos = await res.json();
-    const repos = allRepos.filter(r => !r.name.toLowerCase().includes('github.io'));
+    const repos = allRepos.filter(r => 
+      !r.name.toLowerCase().includes('github.io') &&
+      r.name.toLowerCase() !== 'portfolio'
+    );
 
     if (!repos.length) throw new Error('No repos');
     renderRepos(container, repos);
